@@ -10,7 +10,7 @@
 server.pem
 server.crt
 *.html
-vendor
+#vendor
 Godeps
 taotie
 core/spider
