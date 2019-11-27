@@ -43,6 +43,27 @@
 
 ![](doc/design.jpeg)
 
+# 代码结构
+
+```
+├── core
+│   ├── config      配置
+│   ├── controllers 控制器
+│   ├── flog        日志
+│   ├── model       模型
+│   ├── router      路由
+│   ├── server      服务初始化
+│   ├── session     分布式jwt
+│   ├── spider      采集逻辑(暂不开源)
+│   └── util        工具
+├── doc
+│   ├── Insomnia_2019-11-27.json    文档
+│   ├── db      数据库安装脚本
+│   └── install 服务安装脚本
+├── go.mod      依赖库管理
+├── main.go     代码入口
+```
+
 # 接口文档
 
 见 `doc/Insomnia_2019-11-27.json`，接口支持完整的用户管理，权限管理，数据管理。
