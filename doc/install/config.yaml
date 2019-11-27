@@ -1,0 +1,28 @@
+global:
+  port: 8080
+  time_zone: 8
+  single_login: true
+  can_mail: true
+
+db:
+  name: taotie
+  host: 172.17.0.1
+  port: 3307
+  user: root
+  pass: hunterhug
+
+redis:
+  host: 172.17.0.1:6380
+  database: 2
+  pass: hunterhug
+
+mail:
+  host: smtp-mail.outlook.com
+  port: 587
+  email: gdccmcm14@live.com
+  password: cccc
+
+spider:
+  account: dadada@qq.com
+  aws_category_thread: 10
+  aws_asin_thread: 10

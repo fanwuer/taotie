@@ -1,0 +1,51 @@
+version: '2'
+services:
+  myredis:
+    container_name: "myredis"
+    restart: always
+    image: redis:5.0.5
+    ports:
+      - "6380:6379"
+    volumes:
+      - /opt/mydocker/redis/data:/data
+      - /opt/mydocker/redis/conf:/usr/local/etc/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+  myredisui:
+    container_name: "myredisui"
+    restart: always
+    image: erikdubbelboer/phpredisadmin:v1.11.5
+    environment:
+      - ADMIN_USER=root
+      - ADMIN_PASS=hunterhug
+      - REDIS_1_HOST=myredis
+      - REDIS_1_PORT=6379
+      - REDIS_1_AUTH=hunterhug
+    depends_on:
+      - myredis
+    links:
+      - myredis:myredis
+    ports:
+      - "8001:80"
+  mymysql:
+    container_name: "mymysql"
+    restart: always
+    #image: mariadb:10.3
+    #https://dev.mysql.com/doc/refman/8.0/en/create-index.html#create-index-multi-valued
+    image: mysql:8.0.18
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=hunterhug
+    volumes:
+      - /opt/mydocker/mysql/data:/var/lib/mysql
+      - /opt/mydocker/mysql/conf:/etc/mysql/conf.d
+  myphpmyadmin:
+    restart: always
+    image: phpmyadmin/phpmyadmin:edge-4.9
+    container_name: myphpmyadmin
+    ports:
+      - "8000:80"
+    depends_on:
+      - mymysql
+    links:
+      - mymysql:db

@@ -1,0 +1,87 @@
+# 全局配置
+global:
+  # 角色: Web/Proxy/AwsCategoryTimer/AwsAsinTimer/AwsCategoryTask/AwsAsinTask/All
+  role: All
+  # 服务监听地址，默认值：0.0.0.0
+  host: 0.0.0.0
+  # 服务监听端口，默认值：8080
+  port: 8080
+  # 系统日志路径，默认值：data/log/svr.log
+  log_path: ./data/log/svr.log
+  # 时区
+  time_zone: 8
+  # 单点登录
+  single_login: true
+  # session有效期
+  session_expire_time: 604800
+  # 文件存储位置，默认值：data/storage
+  storage_path: ./data/storage
+  # 使用对象存储
+  use_oss: false
+  # 允许邮箱注册，修改密码
+  can_mail: true
+
+# 数据库配置
+db:
+  # 数据库名，默认值：taotie
+  name: taotie
+  # 数据库地址，默认值：127.0.0.1
+  host: 127.0.0.1
+  # 数据库用户名，*必填
+  user: root
+  # 数据库密码，*必填
+  pass: hunterhug
+  # 数据库端口，默认值：3306
+  port: 3307
+  # 数据库最大空闲连接数，默认值：10
+  max_idle_conns: 10
+  # 数据库最大打开连接数，默认值：20
+  max_open_conns: 20
+  # 数据库日志调试，默认值：false
+  debug: true
+  # 数据库调试日志是否打印到文件中
+  # 当 debug = true 时有效，false 时打印到终端，默认值：false
+  debug_to_file: false
+  # 数据库调试日志打印到的文件路径
+  # 当 debug_to_file = true 时有效，默认值：data/log/db.log
+  debug_to_file_path: ./data/log/db.log
+
+# Redis配置
+redis:
+  # 必填
+  host: 127.0.0.1:6380
+  # 非必填
+  max_idle: 64
+  max_active: 0
+  idle_timeout: 120
+  database: 3
+  pass: hunterhug
+
+# 阿里云对象存储配置，可选
+oss:
+  # 区域和桶基本配置
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  bucket_name: th
+  # 编程密钥
+  access_key_id: LTAIu
+  access_key_secret: d72l
+
+# 邮箱服务器配置，可选
+mail:
+  # 必填
+  host: smtp-mail.outlook.com
+  port: 587
+  email: gdccmcm14@live.com
+  password: cccc
+  # 非必填
+  subject: "TaoTie Code"
+  body: "%s Code is <br/> <p style='text-align:center'>%s</p> <br/>Valid in 5 minute."
+
+# 采集配置
+spider:
+  # 此账号需要购买：http://proxy.mimvp.com，其他代理IP商接口待开发
+  account: iasie@qq.com
+  # 类目任务采集线程数
+  aws_category_thread: 10
+  # 商品任务采集线程数
+  aws_asin_thread: 10

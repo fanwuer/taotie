@@ -1,0 +1,58 @@
+version: '2'
+services:
+  taotieWeb:
+    container_name: "taotieWeb"
+    restart: always
+    image: taotie:latest
+    ports:
+      - "8080:8080"
+    environment:
+      RUN_OPTS: "-f=/root/config.yaml -init_db=true"
+    volumes:
+      - /opt/mydocker/taotie/config.yaml:/root/config.yaml
+      - /opt/mydocker/taotie/data:/root/data
+  taotieProxy:
+    container_name: "taotieProxy"
+    restart: always
+    image: taotie:latest
+    environment:
+      RUN_OPTS: "-f=/root/config.yaml -role=Proxy"
+    volumes:
+      - /opt/mydocker/taotie/config.yaml:/root/config.yaml
+      - /opt/mydocker/taotie/data:/root/data
+  taotieAwsCategoryTimer:
+    container_name: "taotieAwsCategoryTimer"
+    restart: always
+    image: taotie:latest
+    environment:
+      RUN_OPTS: "-f=/root/config.yaml -role=AwsCategoryTimer"
+    volumes:
+      - /opt/mydocker/taotie/config.yaml:/root/config.yaml
+      - /opt/mydocker/taotie/data:/root/data
+  taotieAwsAsinTimer:
+    container_name: "taotieAwsAsinTimer"
+    restart: always
+    image: taotie:latest
+    environment:
+      RUN_OPTS: "-f=/root/config.yaml -role=AwsAsinTimer"
+    volumes:
+      - /opt/mydocker/taotie/config.yaml:/root/config.yaml
+      - /opt/mydocker/taotie/data:/root/data
+  taotieAwsCategoryTask:
+    container_name: "taotieAwsCategoryTask"
+    restart: always
+    image: taotie:latest
+    environment:
+      RUN_OPTS: "-f=/root/config.yaml -role=AwsCategoryTask"
+    volumes:
+      - /opt/mydocker/taotie/config.yaml:/root/config.yaml
+      - /opt/mydocker/taotie/data:/root/data
+  taotieAwsAsinTask:
+    container_name: "taotieAwsAsinTask"
+    restart: always
+    image: taotie:latest
+    environment:
+      RUN_OPTS: "-f=/root/config.yaml -role=AwsAsinTask"
+    volumes:
+      - /opt/mydocker/taotie/config.yaml:/root/config.yaml
+      - /opt/mydocker/taotie/data:/root/data

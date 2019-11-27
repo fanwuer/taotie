@@ -1,0 +1,29 @@
+version: '2'
+services:
+  myes:
+    container_name: "myes"
+    #    image: elasticsearch:7.4.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    environment:
+      - discovery.type=single-node
+      - http.port=9200
+      - http.cors.enabled=true
+      - http.cors.allow-methods=OPTIONS,HEAD,GET,POST,PUT,DELETE
+      - http.cors.allow-origin=*
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=true
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    volumes:
+      - "/opt/mydocker/es:/usr/share/elasticsearch/data:rw"
+  myesui:
+    # host.docker.internal:9200
+    image: elastichq/elasticsearch-hq:release-v3.5.4
+    container_name: myesui
+    ports:
+      - '5000:5000'
+    links:
+      - myes
