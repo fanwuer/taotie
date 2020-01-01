@@ -6,11 +6,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/taotie)](https://goreportcard.com/report/github.com/hunterhug/taotie)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/taotie.svg)](https://github.com/hunterhug/taotie/issues)
 
-核心采集库使用: [Marmot | HTTP Download| 为了对接API和写爬虫能快点的封装轮子](https://github.com/hunterhug/marmot)
+这是一套全新版本的完全开源的针对美国亚马逊进行精细化选款的系统。核心采集库使用: [Marmot | HTTP Download| 为了对接API和写爬虫能快点的封装轮子](https://github.com/hunterhug/marmot)。
 
-`Golang` 开发的高性能精细化选款系统，该仓库为服务端代码。支持定时和实时采集亚马逊某商品类目或商品信息，提供可视化界面进行数据分析。微服务分布式部署，支持横向拓展。
-
-核心逻辑还未开源，待前端界面开发完毕后一并开源，敬请期待。
+使用 `Golang` 开发的高性能精细化选款系统，该仓库为服务端代码。支持定时和实时采集亚马逊某商品类目或商品信息，微服务分布式部署，支持横向拓展。
 
 # 技术选型
 
@@ -18,7 +16,7 @@
 
 1. MySQL：事务性数据，商品基本信息。
 2. Redis：维持采集队列，消息通信，分布式Session。
-3. ElasticSearch：事务性不强的全文检索数据，商品文本搜索。(暂时未用)
+3. ElasticSearch：事务性不强的全文检索数据，商品文本搜索。(请忽视，暂时未用)
 
 # 微服务说明
 
@@ -41,10 +39,6 @@
 
 调度逻辑稳定，高效，自动攻克被机器人验证码困扰，您值得拥有。
 
-# 架构图
-
-![](doc/design.jpeg)
-
 # 代码结构
 
 ```
@@ -56,7 +50,7 @@
 │   ├── router      路由
 │   ├── server      服务初始化
 │   ├── session     分布式jwt
-│   ├── spider      采集逻辑(暂不开源)
+│   ├── spider      采集逻辑
 │   └── util        工具
 ├── doc
 │   ├── Insomnia_2019-11-27.json    文档
@@ -65,10 +59,6 @@
 ├── go.mod      依赖库管理
 ├── main.go     代码入口
 ```
-
-# 接口文档
-
-见 `doc/Insomnia_2019-11-27.json`，接口支持完整的用户管理，权限管理，数据管理。
 
 # 部署
 
@@ -118,7 +108,7 @@ db:
   # 数据库密码，*必填
   pass: hunterhug
   # 数据库端口，默认值：3306
-  port: 3307
+  port: 3306
   # 数据库最大空闲连接数，默认值：10
   max_idle_conns: 10
   # 数据库最大打开连接数，默认值：20
@@ -135,7 +125,7 @@ db:
 # Redis配置
 redis:
   # 必填
-  host: 127.0.0.1:6380
+  host: 127.0.0.1:6379
   # 非必填
   max_idle: 64
   max_active: 0
@@ -190,33 +180,58 @@ make build_docker
 make restart
 ```
 
-API地址：http://127.0.0.1:8080
+API地址：http://127.0.0.1:8080，账号/密码：admin/admin
 
-打开集成的数据库软件UI进行数据查看:
+可以打开集成的数据库软件UI进行数据查看:
 
 MySQL： http://127.0.0.1:8000/index.php
 
 Redis： http://127.0.0.1:8001/
 
+# 赞赏开源作者
+
+微信支持:
+
+![weixin.jpg](https://upload-images.jianshu.io/upload_images/19933091-4c10990b7d9af930.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](support/weixin.jpg)
+
+
+支付宝支持:
+
+![alipay.png](https://upload-images.jianshu.io/upload_images/19933091-2991a5980471e086.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](support/alipay.png)
+
+# 接口文档
+
+见 `doc/Insomnia_2019-11-27.json`，接口支持完整的用户管理，权限管理，数据管理。
+
+![](support/json.png)
+
+# 架构图
+
+![](doc/design.jpeg)
+
 # 免责声明
 
 本产品遵循署名-非商业性使用-禁止演绎 4.0 国际。您可用于教育，学习，但不可用于商业盈利。
 
-关于版权，爬虫有风险, 本人不承担由此开源项目带来的任何责任，核心代码不提交仓库，请私信。
+关于版权，爬虫有风险, 本人不承担由此开源项目带来的任何责任。
 
 ```
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际
 	警告： 以下的代码版权归属hunterhug，请不要传播或修改代码
 	你可以在教育用途下使用该代码，但是禁止公司或个人用于商业用途(在未授权情况下不得用于盈利)
-	商业授权请联系邮箱：gdccmcm14@live.com QQ:459527502
+	商业授权请联系邮箱：gdccmcm14@live.com WetChat: hunterhug
 
 	All right reserved
 	Attribution-NonCommercial-NoDerivatives 4.0 International
 	Notice: The following code's copyright by hunterhug, Please do not spread and modify.
 	You can use it for education only but can't make profits for any companies and individuals!
 	For more information on commercial licensing please contact hunterhug.
-	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or QQ:459527502
+	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or WetChat: hunterhug
 
 	2019.11 by hunterhug
 ```
