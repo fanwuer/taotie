@@ -16,7 +16,6 @@
 
 1. MySQL：事务性数据，商品基本信息。
 2. Redis：维持采集队列，消息通信，分布式Session。
-3. ElasticSearch：事务性不强的全文检索数据，商品文本搜索。(请忽视，暂时未用)
 
 # 微服务说明
 
@@ -196,22 +195,11 @@ Redis： http://127.0.0.1:8001/
 
 ![](support/weixin.jpg)
 
-
-支付宝支持:
-
-![alipay.png](https://upload-images.jianshu.io/upload_images/19933091-2991a5980471e086.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![](support/alipay.png)
-
 # 接口文档
 
 见 `doc/Insomnia_2019-11-27.json`，接口支持完整的用户管理，权限管理，数据管理。
 
 ![](support/json.png)
-
-# 架构图
-
-![](doc/design.jpeg)
 
 # 免责声明
 

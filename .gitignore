@@ -13,6 +13,4 @@ server.crt
 #vendor
 Godeps
 taotie
-core/spider
-
-
+#core/spider
